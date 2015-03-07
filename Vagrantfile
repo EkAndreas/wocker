@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "wocker.dev"
   config.vm.network :private_network, ip: "172.17.8.23"
 
-  config.vm.synced_folder "./data", "/home/core/data", create: true, id: "core", :nfs => true, :mount_options => ['nolock,vers=3,udp']
+  config.vm.synced_folder "./data", "/home/core/data", create: true, id: "core", :mount_options => ["dmode=777, fmode=666"]
 
   config.vm.provision :shell, :privileged => false, :inline => <<-EOS
     curl -O https://raw.githubusercontent.com/wckr/wocker-bashrc/master/bashrc && mv -f bashrc ~/.bashrc && source ~/.bashrc
